@@ -10,7 +10,7 @@
     <packaging>maven-plugin</packaging>
 
     <name>FSM Maven Package Type</name>
-    <description></description>
+    <description>A simple approach to a Maven package type for FirstSpirit modules</description>
     <inceptionYear>2016</inceptionYear>
 
     <properties>
