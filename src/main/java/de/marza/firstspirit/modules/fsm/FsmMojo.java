@@ -12,20 +12,25 @@ import org.apache.maven.project.MavenProject;
 import java.io.File;
 
 /**
- * The type Fsm mojo.
+ * The type FsmMojo renames a zip to a fsm file.
  */
 @Mojo(name = "fsm", defaultPhase = LifecyclePhase.PACKAGE, threadSafe = true)
 public class FsmMojo extends AbstractMojo {
 
-  @Parameter(defaultValue = "${project.build.directory}/${project.build.finalName}.zip", required = true)
+  @Parameter(defaultValue = "${project.build.directory}/${project.build.finalName}.zip",
+      required = true)
   private File source;
 
-  @Parameter(defaultValue = "${project.build.directory}${project.build.finalName}.fsm", required = true)
+  @Parameter(defaultValue = "${project.build.directory}${project.build.finalName}.fsm",
+      required = true)
   private File target;
 
   @Component
   private MavenProject project;
 
+  /**
+   * Run mojo.
+   */
   public void execute() throws MojoExecutionException, MojoFailureException {
 
     if (source == null) {
@@ -37,7 +42,7 @@ public class FsmMojo extends AbstractMojo {
     }
 
     if (!project.getAttachedArtifacts().isEmpty()) {
-      throw new MojoFailureException("Configure the maven assembly plugin not to attach any files!");
+      throw new MojoFailureException("Configure the maven assembly plugin not to attach no files!");
     }
 
     getLog().info("Renaming " + source.getName() + " to " + target.getName() + "...");
