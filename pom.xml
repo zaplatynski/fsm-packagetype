@@ -13,12 +13,6 @@
     <description>A simple approach to a Maven package type for FirstSpirit modules</description>
     <inceptionYear>2016</inceptionYear>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.7</java.version>
-    </properties>
-
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -35,6 +29,29 @@
             <email>marza@marza.de</email>
         </developer>
     </developers>
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/zaplatynski/fsm-packagetype/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>travis</system>
+        <url>https://travis-ci.org/zaplatynski/fsm-packagetype</url>
+    </ciManagement>
+
+    <scm>
+        <url>https://github.com/zaplatynski/fsm-packagetype</url>
+        <connection>scm:git:https://github.com/zaplatynski/fsm-packagetype.git</connection>
+        <developerConnection>scm:git:https://github.com/zaplatynski/fsm-packagetype.git
+        </developerConnection>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.7</java.version>
+    </properties>
 
     <dependencies>
         <dependency>
