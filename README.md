@@ -84,6 +84,8 @@ In the dependency set you specify your main dependencies. A minimal `module.xml`
 ```
 Of cause feel free to combine this with [Monday Consulting's FSM plugin](https://github.com/monday-consulting/fsm-maven-plugin) if you don't want to maintain the module.xml manually.
 
+If you want to have a kind of real world example then have a look at my [example project](https://github.com/zaplatynski/fsm-example-project) here on GitHub.
+
 ## Build command
 
 [Maven](http://maven.apache.org/) is used to compile and assemble this project:
