@@ -21,7 +21,7 @@ public class FsmMojo extends AbstractMojo {
       required = true)
   private File source;
 
-  @Parameter(defaultValue = "${project.build.directory}${project.build.finalName}.fsm",
+  @Parameter(defaultValue = "${project.build.directory}/${project.build.finalName}.fsm",
       required = true)
   private File target;
 
@@ -34,33 +34,32 @@ public class FsmMojo extends AbstractMojo {
   public void execute() throws MojoExecutionException, MojoFailureException {
 
     if (source == null) {
-      throw new MojoFailureException("source is null");
+      throw new MojoFailureException(this, "The source is null", "");
     }
 
     if (target == null) {
-      throw new MojoFailureException("target is null");
+      throw new MojoFailureException(this, "The target is null", "");
     }
 
     if (!project.getAttachedArtifacts().isEmpty()) {
-      throw new MojoFailureException("Configure the maven assembly plugin not to attach no files!");
+      throw new MojoFailureException(this, "Assembly attached files!", "Configure the Maven "
+          + "assembly plugin to attach any files! -> <attach>false</attach>");
     }
 
-    getLog().info("Renaming " + source.getName() + " to " + target.getName() + "...");
+    getLog().info("Try to rename '" + source.getName() + "' to '" + target.getName() + "'...");
+    getLog().debug("FSM Source: " + source.getAbsolutePath());
+    getLog().debug("FSM Target: " + target.getAbsolutePath());
 
-    final boolean success;
     try {
-      success = source.renameTo(target);
-    } catch (final Exception e) {
-      getLog().error(e);
-      throw new MojoExecutionException("Renaming to *.fsm failed: " + e.toString(), e);
+      final RenameZipAndAttachFsm zipToFsm = new RenameZipAndAttachFsm(project, source, target);
+      zipToFsm.engage();
+    } catch (final MojoExecutionException | MojoFailureException mojoException) {
+      throw mojoException;
+    } catch (final Exception error) {
+      throw new MojoExecutionException("An error occurred while renaming!", error);
     }
 
-    if (success) {
-      getLog().info("Success! Attach artifact...");
-      project.getArtifact().setFile(target);
-    } else {
-      getLog().error("Renaming to *.fsm failed (reason unkown)");
-      throw new MojoFailureException("Renaming to *.fsm failed (reason unkown)");
-    }
+    getLog().info("Successfully attached FSM as artifact!");
   }
+
 }
