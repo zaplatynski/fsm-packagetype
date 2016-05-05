@@ -2,9 +2,7 @@
 
 [![Build Status](https://travis-ci.org/zaplatynski/fsm-packagetype.svg?branch=master)](https://travis-ci.org/zaplatynski/fsm-packagetype)
 
-This is a simple approach to create a Maven package type for FirstSpirit modules (FSM).
-
-The main goal is to simply a Maven pom and have working Maven life cycle with a working install and deploy phase.
+This is a simple approach to create a Maven package type for FirstSpirit modules (FSM) with a fully working Maven lifecycle inclung install and deploy.
 
 ## How to use
 
@@ -42,7 +40,7 @@ In your pom.xml add this:
     </build>
 </project>
 ```
-Inside the `fsm.xml` you need to specify the Maven assembly plugin descriptor:
+Inside the `fsm.xml` you need to specify the [Maven assembly plugin](http://maven.apache.org/plugins/maven-assembly-plugin/) descriptor to create a typical FSM:
 ```
 <assembly xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
@@ -71,7 +69,20 @@ Inside the `fsm.xml` you need to specify the Maven assembly plugin descriptor:
     </dependencySets>
 </assembly>
 ```
-In the dependency set you specify your main dependencies.
+In the dependency set you specify your main dependencies. A minimal `module.xml` could look like this:
+```
+<module>
+    <name>${project.artifactId}</name>
+    <displayName>${project.name}</displayName>
+    <version>${project.version}</version>
+
+    <resources>
+        <resource scope="module">lib/my-artifactId-${project.version}.jar</resource>
+        ...
+    </resources>
+</module>
+```
+Of cause feel free to combine this with [Monday Consulting's FSM plugin](https://github.com/monday-consulting/fsm-maven-plugin) if you don't want to maintain the module.xml manually.
 
 ## Build command
 
