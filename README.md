@@ -73,7 +73,7 @@ Inside the `fsm.xml` you need to specify the Maven assembly plugin descriptor:
 ```
 In the dependency set you specify your main dependencies.
 
-## Compilation instruction
+## Build command
 
 [Maven](http://maven.apache.org/) is used to compile and assemble this project:
 ```
