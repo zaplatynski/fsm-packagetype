@@ -16,7 +16,7 @@ In your pom.xml add this:
             
             <!-- make new fsm package type available to Maven -->
             <plugin>
-                <groupId>de.marza.firstspirit.modules</groupId>
+                <groupId>com.github.zaplatynski</groupId>
                 <artifactId>fsm-packagetype</artifactId>
                 <version>1.0-SNAPSHOT</version>
                 <!-- this is important when extending core Maven functionality: -->
