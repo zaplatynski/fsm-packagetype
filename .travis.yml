@@ -1,5 +1,7 @@
 language: java
 
+sudo: required
+
 jdk:
   - oraclejdk8
   - oraclejdk7
@@ -9,8 +11,8 @@ install:
   - mvn --settings .travis/settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 before_install:
-  - echo ${GPG_OWNERTRUST} | base64 --decode | ${GPG_EXECUTABLE} --import-ownertrust
   - echo ${GPG_SECRET_KEYS} | base64 --decode | ${GPG_EXECUTABLE} --import
+  - echo ${GPG_OWNERTRUST} | base64 --decode | ${GPG_EXECUTABLE} --import-ownertrust
 
 deploy:
   -
