@@ -5,6 +5,10 @@ jdk:
   - oraclejdk7
   - openjdk7
 
+cache:
+  directories:
+    - ~/.m2
+
 install:
   - mvn --settings .travis/settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 

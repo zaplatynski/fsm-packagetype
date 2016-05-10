@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 echo "*** Start deployment to Maven Central... ***"
 
 if [ ! -z "$TRAVIS_TAG" ]
