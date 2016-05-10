@@ -13,8 +13,8 @@ before_install:
   - echo ${GPG_OWNERTRUST} | base64 --decode | ${GPG_EXECUTABLE} --import-ownertrust
 
 deploy:
-  skip_cleanup: true
   -
+    skip_cleanup: true
     provider: script
     script: .travis/deploy.sh
     on:
@@ -22,6 +22,7 @@ deploy:
       branch: master
       jdk: oraclejdk8
   -
+    skip_cleanup: true
     provider: script
     script: .travis/deploy.sh
     on:
