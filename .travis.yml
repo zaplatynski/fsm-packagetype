@@ -11,23 +11,21 @@ install:
   - mvn --settings .travis/settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 before_install:
-  - echo ${GPG_OWNERTRUST} | base64 --decode | ${GPG_EXECUTABLE} --import-ownertrust
-  - ${GPG_EXECUTABLE} --version
-  - ls -asl ~/.gnupg
   - echo ${GPG_SECRET_KEYS} | base64 --decode | ${GPG_EXECUTABLE} --import
+  - echo ${GPG_OWNERTRUST} | base64 --decode | ${GPG_EXECUTABLE} --import-ownertrust
 
 deploy:
   -
     provider: script
     script: .travis/deploy.sh
     on:
-      repo: githubCom/zaplatynski/fsm-packagetype
+      repo: zaplatynski/fsm-packagetype
       branch: master
       jdk: oraclejdk8
   -
     provider: script
     script: .travis/deploy.sh
     on:
-      repo: githubCom/zaplatynski/fsm-packagetype
+      repo: zaplatynski/fsm-packagetype
       tags: true
       jdk: oraclejdk8
