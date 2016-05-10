@@ -11,9 +11,10 @@ install:
   - mvn --settings .travis/settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 before_install:
-  - ${GPG_EXECUTABLE} --version
-  - echo ${GPG_SECRET_KEYS} | base64 --decode | ${GPG_EXECUTABLE} --import
   - echo ${GPG_OWNERTRUST} | base64 --decode | ${GPG_EXECUTABLE} --import-ownertrust
+  - ${GPG_EXECUTABLE} --version
+  - ls -asl ~/.gnupg
+  - echo ${GPG_SECRET_KEYS} | base64 --decode | ${GPG_EXECUTABLE} --import
 
 deploy:
   -
