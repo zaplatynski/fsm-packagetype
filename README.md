@@ -8,8 +8,8 @@ In your pom.xml add this:
 ```
 <project>
 
-    <groupId>mygroup</groupId>
-    <artifactId>myartifact</artifactId>
+    <groupId>my-group</groupId>
+    <artifactId>my-fsm-artifact</artifactId>
     <version>1.2.3</version>
     
     <!-- NEW: make a FSM file -->
@@ -68,7 +68,7 @@ Inside the `fsm.xml` you need to specify the [Maven assembly plugin](http://mave
         <dependencySet>
             <outputDirectory>lib</outputDirectory>
             <includes>
-                <include>my-groupId:my-artifactId</include>
+                <include>my-groupId:my-jar-artifactId</include>
                  ...
             </includes>
             <useTransitiveFiltering>true</useTransitiveFiltering>
@@ -84,7 +84,7 @@ The FSM Maven package type will take care to rename the zip file to a FSM file. 
     <version>${project.version}</version>
 
     <resources>
-        <resource scope="module">lib/my-artifactId-${project.version}.jar</resource>
+        <resource scope="module">lib/my-jar-artifactId-${project.version}.jar</resource>
         ...
     </resources>
 </module>
