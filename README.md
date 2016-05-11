@@ -1,6 +1,4 @@
-# Maven Package Type For FirstSpirit Modules
-
-[![Build Status](https://travis-ci.org/zaplatynski/fsm-packagetype.svg?branch=master)](https://travis-ci.org/zaplatynski/fsm-packagetype)
+# Maven Package Type For FirstSpirit Modules [![Build Status](https://travis-ci.org/zaplatynski/fsm-packagetype.svg?branch=master)](https://travis-ci.org/zaplatynski/fsm-packagetype)
 
 This is a simple approach to create a Maven package type for FirstSpirit modules (FSM) with a fully working Maven lifecycle inclung install and deploy.
 
@@ -9,12 +7,20 @@ This is a simple approach to create a Maven package type for FirstSpirit modules
 In your pom.xml add this:
 ```
 <project>
+
+    <groupId>mygroup</groupId>
+    <artifactId>myartifact</artifactId>
+    <version>1.2.3</version>
+    
+    <!-- NEW: make a FSM file -->
+    <packaging>fsm</packaging>
+
     ...
     <build>
     
         <plugins>
             
-            <!-- make new fsm package type available to Maven -->
+            <!-- make new FSM package type available to Maven -->
             <plugin>
                 <groupId>com.github.zaplatynski</groupId>
                 <artifactId>fsm-packagetype</artifactId>
@@ -23,6 +29,7 @@ In your pom.xml add this:
                 <extensions>true</extensions>
             </plugin>
             
+            <!-- define how the FSM file look like -->
              <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.6</version>
@@ -40,7 +47,7 @@ In your pom.xml add this:
     </build>
 </project>
 ```
-Inside the `fsm.xml` you need to specify the [Maven assembly plugin](http://maven.apache.org/plugins/maven-assembly-plugin/) descriptor to create a typical FSM:
+Inside the `fsm.xml` you need to specify the [Maven assembly plugin](http://maven.apache.org/plugins/maven-assembly-plugin/) descriptor to create a typical FSM file layout:
 ```
 <assembly xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
@@ -69,7 +76,7 @@ Inside the `fsm.xml` you need to specify the [Maven assembly plugin](http://mave
     </dependencySets>
 </assembly>
 ```
-In the dependency set you specify your main dependencies. A minimal `module.xml` could look like this:
+The FSM Maven package type will take care to rename the zip file to a FSM file. In the dependency set you specify your main dependencies. A minimal `module.xml` could look like this:
 ```
 <module>
     <name>${project.artifactId}</name>
