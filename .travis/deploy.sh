@@ -1,5 +1,3 @@
-#!/bin/bash
-
 echo "*** Start deployment to Maven Central... ***"
 
 #cd `dirname $0`/..
