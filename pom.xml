@@ -6,7 +6,7 @@
 
     <groupId>com.github.zaplatynski</groupId>
     <artifactId>fsm-packagetype</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>FSM Maven Package Type</name>
