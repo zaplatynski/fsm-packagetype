@@ -6,3 +6,5 @@ jdk:
 cache:
   directories:
     - ~/.m2
+install:
+    -
