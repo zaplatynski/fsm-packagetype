@@ -13,7 +13,6 @@ install:
     - mvn --settings .travis/settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 before_deploy: "echo 'ready?'"
 deploy:
-  skip_cleanup: true
   -
     provider: script
     script: .travis/deploy.sh
