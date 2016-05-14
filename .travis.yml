@@ -6,5 +6,6 @@ jdk:
 cache:
   directories:
     - ~/.m2
+script: mvn clean package
 install:
     -
