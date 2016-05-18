@@ -1,4 +1,4 @@
-# Maven Package Type For FirstSpirit Modules [![Build Status](https://travis-ci.org/zaplatynski/fsm-packagetype.svg?branch=master)](https://travis-ci.org/zaplatynski/fsm-packagetype)  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.zaplatynski/fsm-packagetype/badge.svg?style=flat)](http://mvnrepository.com/artifact/com.github.zaplatynski/fsm-packagetype)
+# Maven Package Type For FSMs [![Build Status](https://travis-ci.org/zaplatynski/fsm-packagetype.svg?branch=master)](https://travis-ci.org/zaplatynski/fsm-packagetype)  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.zaplatynski/fsm-packagetype/badge.svg?style=flat)](http://mvnrepository.com/artifact/com.github.zaplatynski/fsm-packagetype)
 
 This is a simple approach to create a Maven package type for FirstSpirit modules (FSM) with a fully working Maven lifecycle inclung install and deploy.
 
@@ -91,7 +91,7 @@ The FSM Maven package type will take care to rename the zip file to a FSM file. 
 ```
 Of cause feel free to combine this with [Monday Consulting's FSM plugin](https://github.com/monday-consulting/fsm-maven-plugin) if you don't want to maintain the module.xml manually.
 
-If you want to have a kind of real world example then have a look at my [example project](https://github.com/zaplatynski/fsm-example-project) here on GitHub.
+If you want to have a kind of real world example then have a look at my [Second-Hand Log project](https://github.com/zaplatynski/second-hand-log) here on GitHub. As a blue print for more common project setup there is a [example project](https://github.com/zaplatynski/fsm-example-project) here on GitHub too.
 
 ## Build command
 
