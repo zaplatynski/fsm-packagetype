@@ -8,6 +8,7 @@
             </implementation>
             <configuration>
                 <phases>
+                    <generate-resources>${project.groupId}:${project.artifactId}:${project.version}:moduleXml</generate-resources>
                     <process-resources>org.apache.maven.plugins:maven-resources-plugin:resources</process-resources>
                     <process-test-resources>org.apache.maven.plugins:maven-resources-plugin:2.6:testResources</process-test-resources>
                     <test-compile>org.apache.maven.plugins:maven-compiler-plugin:3.1:testCompile</test-compile>

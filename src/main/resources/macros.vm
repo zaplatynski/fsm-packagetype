@@ -1,0 +1,28 @@
+## Macro to fill common tags from pom
+#macro(addHeader $mavenProject)
+    <name>${mavenProject.artifactId}</name>
+    #if( $mavenProject.name )<displayname>${mavenProject.name}</displayname>
+    #end#if( $mavenProject.description )<description>${mavenProject.description}</description>
+    #end<version>${mavenProject.version}</version>
+#end
+
+## Macro to add transitive dependencies from pom
+#macro(addResources $mavenProject $scope $libPath)
+    <resources>
+#foreach( $dependency in $mavenProject.getDependencyArtifacts() )
+#if( ${dependency.scope} == "compile" || ${dependency.scope} == "runtime")
+#set($depName="${dependency.artifactId}")
+#set($depVersion="${dependency.version}")
+#set($depFile = "${libPath}/${dependency.file.name}")
+        <resource scope="${scope}" name="${depName}" version="${depVersion}">${depFile}</resource>
+#end
+#end
+    </resources>
+#end
+
+#macro(addModuleXmlFragments $mavenProject)
+#foreach( $childModule in $project.getParent().getModules() )
+    #set($importFile = "../../../../$childModule/target/module.xml")
+    #include($importFile)
+#end
+#end
