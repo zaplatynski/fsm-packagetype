@@ -1,4 +1,4 @@
-package de.marza.firstspirit.modules.fsm;
+package com.github.zaplatynski.firstspirit.modules.fsm.velocity;
 
 import org.apache.velocity.app.event.IncludeEventHandler;
 import org.apache.velocity.runtime.RuntimeServices;

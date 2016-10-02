@@ -8,7 +8,6 @@
 
 ## Macro to add transitive dependencies from pom
 #macro(addResources $mavenProject $scope $libPath)
-    <resources>
 #foreach( $dependency in $mavenProject.getDependencyArtifacts() )
 #if( ${dependency.scope} == "compile" || ${dependency.scope} == "runtime")
 #set($depName="${dependency.artifactId}")
@@ -17,9 +16,9 @@
         <resource scope="${scope}" name="${depName}" version="${depVersion}">${depFile}</resource>
 #end
 #end
-    </resources>
 #end
 
+## Include all module xml fragments from neighbor maven modules
 #macro(addModuleXmlFragments $mavenProject)
 #foreach( $childModule in $project.getParent().getModules() )
     #set($importFile = "../../../../$childModule/target/module.xml")

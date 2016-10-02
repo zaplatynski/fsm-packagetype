@@ -1,4 +1,4 @@
-package de.marza.firstspirit.modules.fsm;
+package com.github.zaplatynski.firstspirit.modules.fsm;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoFailureException;
