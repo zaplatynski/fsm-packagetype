@@ -12,7 +12,7 @@ import java.util.Properties;
 
 
 /**
- * The type Velocity manager.
+ * The type VVelocityManager encapsulates the Velocity engine to parse macros.
  */
 public class VelocityManager {
 

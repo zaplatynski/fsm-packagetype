@@ -12,14 +12,14 @@ import java.io.RandomAccessFile;
 
 
 /**
- * The type Xml formatter.
+ * The type XmlFormatter pretty prints a xml file.
  */
 public class XmlFormatter {
 
   private final File moduleXml;
 
   /**
-   * Instantiates a new Xml formatter.
+   * Instantiates a new XmlFormatter.
    *
    * @param moduleXml the module xml
    */
@@ -28,7 +28,7 @@ public class XmlFormatter {
   }
 
   /**
-   * Pretty print.
+   * Pretty print object Document to file.
    *
    * @param document the document
    * @throws MojoFailureException the mojo failure exception

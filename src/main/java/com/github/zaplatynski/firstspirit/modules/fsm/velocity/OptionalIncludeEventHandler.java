@@ -4,6 +4,10 @@ import org.apache.velocity.app.event.IncludeEventHandler;
 import org.apache.velocity.runtime.RuntimeServices;
 import org.apache.velocity.util.RuntimeServicesAware;
 
+/**
+ * The type OptionalIncludeEventHandler takes care of non existing module xml files and ignores
+ * them.
+ */
 public class OptionalIncludeEventHandler implements IncludeEventHandler, RuntimeServicesAware {
 
   private RuntimeServices runtimeServices;

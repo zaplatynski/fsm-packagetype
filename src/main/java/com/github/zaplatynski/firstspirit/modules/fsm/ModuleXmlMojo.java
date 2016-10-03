@@ -15,7 +15,7 @@ import java.util.Optional;
 
 /**
  * The type ModuleXmlMojo is used to parse a Velocity macro file. The module.vm creates a
- * module.xml file.
+ * module.xml file with XML validation.
  */
 @Mojo(name = "moduleXml", defaultPhase = LifecyclePhase.GENERATE_RESOURCES, threadSafe = true,
     requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)

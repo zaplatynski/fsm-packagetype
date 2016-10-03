@@ -18,8 +18,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * The type ModuleXmlMojo is used to parse a Velocity macro file. The module.vm creates a
- * module.xml file.
+ * The type FragmentModuleXmlMojo is used to parse a Velocity macro file. The module.vm creates a
+ * module.xml file without XML validation.
  */
 @Mojo(name = "fragmentModuleXml", defaultPhase = LifecyclePhase.GENERATE_RESOURCES, threadSafe =
     true,requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
