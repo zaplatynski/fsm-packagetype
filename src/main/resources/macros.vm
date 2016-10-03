@@ -3,6 +3,7 @@
     <name>${mavenProject.artifactId}</name>
     #if( $mavenProject.name )<displayname>${mavenProject.name}</displayname>
     #end#if( $mavenProject.description )<description>${mavenProject.description}</description>
+    #end#if( $mavenProject.organization && $mavenProject.organization.name )<vendor>${mavenProject.organization.name}</vendor>
     #end<version>${mavenProject.version}</version>
 #end
 
@@ -18,7 +19,7 @@
 #end
 #end
 
-## Include all module xml fragments from neighbor maven modules
+## Macro to include all module xml fragments from neighbor maven modules
 #macro(addModuleXmlFragments $mavenProject)
 #foreach( $childModule in $project.getParent().getModules() )
     #set($importFile = "../../../../$childModule/target/module.xml")
