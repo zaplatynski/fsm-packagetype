@@ -51,16 +51,18 @@ To create the `module.xml` (FirstSpirit module descriptor) you must provide a `m
 ```
 <module>
     #addHeader($project)
+    
     <components>
         #addModuleXmlFragments($project)
     </components>
 
     <resources>
-        #addResources($project "module" "/lib")
+        #addResources($project "module" "lib")
     </resources>
 </module>
 ```
-The example above will add the common tags for name, version etc., collect module fragment xml if avaiable and prints at the end all Maven dependencies as resource tags.
+The example above will add the common tags for name, version etc. (macro #addHeader), collect module fragment xml if avaiable (macro #addModuleXmlFragments) and prints at the end all Maven dependencies as resource tags (macro #addResources).
+Besides those three macros the variable $project give access to the whole [Maven project](https://maven.apache.org/ref/3.2.3/apidocs/org/apache/maven/project/MavenProject.html). In addition all user defined Maven properties are available too. Since Velocity can not deal with dots in variable names please name them accordingly.
 
 To create an module fragment xml in any other jar Maven module just this to the `pom.xml`:
 ```
@@ -90,7 +92,7 @@ To create an module fragment xml in any other jar Maven module just this to the 
 ```
 Again in the path `src/main/fsm` there must be an in the path `module.vm` in which you can define e.g. an FirstSpirit Executable or Service.
 
-Inside the `fsm.xml` you need to specify the [Maven assembly plugin](http://maven.apache.org/plugins/maven-assembly-plugin/) descriptor to create a typical FSM file layout:
+Inside the above mentioned `fsm.xml` you need to specify the [Maven assembly plugin](http://maven.apache.org/plugins/maven-assembly-plugin/) descriptor to create a typical FSM file layout:
 ```
 <assembly xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
@@ -104,7 +106,7 @@ Inside the `fsm.xml` you need to specify the [Maven assembly plugin](http://mave
         <file>
             <source>target/module.xml</source>
             <outputDirectory>META-INF</outputDirectory>
-            <filtered>true</filtered>
+            <filtered>false</filtered>
         </file>
     </files>
     <dependencySets>
