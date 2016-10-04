@@ -17,6 +17,7 @@ import java.util.Properties;
 public class VelocityManager {
 
 
+  public static final String UTF_8 = "UTF-8";
   private final VelocityEngine velocityEngine;
   private final VelocityContext context;
 
@@ -37,6 +38,9 @@ public class VelocityManager {
    * @param templatePath the template path
    */
   public void renderModuleXml(final Writer writer, final String templatePath) {
+    System.out.println("templatePath: " + templatePath);
+    System.out.println(RuntimeConstants.FILE_RESOURCE_LOADER_PATH + ": "
+        + velocityEngine.getProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH));
     final Template moduleTemplate = velocityEngine.getTemplate(templatePath);
     moduleTemplate.merge(context, writer);
   }
@@ -63,6 +67,9 @@ public class VelocityManager {
     config.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath,file");
     config.setProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH, templateRoot);
     config.setProperty(RuntimeConstants.VM_LIBRARY, "macros.vm");
+    config.setProperty(RuntimeConstants.ENCODING_DEFAULT, UTF_8);
+    config.setProperty(RuntimeConstants.INPUT_ENCODING, UTF_8);
+    config.setProperty(RuntimeConstants.OUTPUT_ENCODING, UTF_8);
 
     final String resourceLoader = ClasspathResourceLoader.class.getName();
     config.setProperty("classpath.resource.loader.class", resourceLoader);
@@ -80,6 +87,6 @@ public class VelocityManager {
     if (project.getParent() != null) {
       return project.getParent().getBasedir().getAbsolutePath();
     }
-    return project.getBasedir().getAbsolutePath();
+    return project.getBasedir().getParentFile().getAbsolutePath();
   }
 }

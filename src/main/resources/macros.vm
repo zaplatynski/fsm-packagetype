@@ -14,7 +14,7 @@
 #set($depName="${dependency.artifactId}")
 #set($depVersion="${dependency.version}")
 #set($depFile = "${libPath}/${dependency.file.name}")
-        <resource scope="${scope}" name="${depName}" version="${depVersion}">${depFile}</resource>
+        <resource #if($scope != "")scope="${scope}"#end name="${depName}" version="${depVersion}">${depFile}</resource>
 #end
 #end
 #end

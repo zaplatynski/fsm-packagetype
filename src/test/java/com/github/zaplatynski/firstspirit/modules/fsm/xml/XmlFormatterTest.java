@@ -58,7 +58,8 @@ public class XmlFormatterTest {
     final String content = readFileContents();
 
     assertThat(content, is(
-        "<module>\n" +
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+            "<module>\n" +
             "    <name>test</name>\n" +
             "</module>\n"));
   }

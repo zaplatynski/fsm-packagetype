@@ -4,11 +4,14 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.w3c.dom.Document;
 import org.w3c.dom.bootstrap.DOMImplementationRegistry;
 import org.w3c.dom.ls.DOMImplementationLS;
+import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.io.StringWriter;
+import java.io.Writer;
 
 
 /**
@@ -43,13 +46,19 @@ public class XmlFormatter {
       throw new MojoFailureException(e.getMessage(), e);
     }
     final DOMImplementationLS impl = (DOMImplementationLS) registry.getDOMImplementation("LS");
-    final LSSerializer writer = impl.createLSSerializer();
+    final LSSerializer lsSerializer = impl.createLSSerializer();
 
-    writer.getDomConfig().setParameter("format-pretty-print", Boolean.TRUE);
-    writer.getDomConfig().setParameter("xml-declaration", Boolean.FALSE);
+    lsSerializer.getDomConfig().setParameter("format-pretty-print", Boolean.TRUE);
+    lsSerializer.getDomConfig().setParameter("xml-declaration", Boolean.TRUE);
+
+    LSOutput lsOutput = impl.createLSOutput();
+    lsOutput.setEncoding("UTF-8");
+    Writer stringWriter = new StringWriter();
+    lsOutput.setCharacterStream(stringWriter);
+    lsSerializer.write(document, lsOutput);
 
     try (RandomAccessFile raf = new RandomAccessFile(moduleXml, "rw")) {
-      final String newXmlString = writer.writeToString(document);
+      final String newXmlString = stringWriter.toString();
       raf.setLength(newXmlString.getBytes().length);
       raf.writeBytes(newXmlString);
     } catch (IOException e) {

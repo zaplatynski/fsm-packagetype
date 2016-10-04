@@ -62,13 +62,13 @@ public class VelocityManagerTest {
     when(parentProject.getBasedir()).thenReturn(templateRoot);
     when(project.getParent()).thenReturn(parentProject);
 
-    final File parent = new File(templateRoot, "fsm/src/main/fsm/");
+    final File parent = new File(templateRoot, "project/src/main/fsm/");
     parent.mkdirs();
     sourceFile = new File(parent,"module.vm");
     sourceFile.createNewFile();
 
     assertThat(sourceFile.exists(), is(true));
-    relativeModuleVMPath = "fsm/src/main/fsm/module.vm";
+    relativeModuleVMPath = "project/src/main/fsm/module.vm";
 
     testling = new VelocityManager(project);
   }
@@ -105,7 +105,8 @@ public class VelocityManagerTest {
     reset(project);
 
     when(project.getProperties()).thenReturn(mavenProjectProperties);
-    when(project.getBasedir()).thenReturn(templateRoot);
+    when(project.getParent()).thenReturn(null);
+    when(project.getBasedir()).thenReturn(new File(templateRoot, "project"));
 
     testling = new VelocityManager(project);
 
