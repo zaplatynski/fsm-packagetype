@@ -24,7 +24,7 @@ In your `pom.xml` add this:
             <plugin>
                 <groupId>com.github.zaplatynski</groupId>
                 <artifactId>fsm-packagetype</artifactId>
-                <version>1.0</version>
+                <version>2.0</version>
                 <!-- this is important when extending core Maven functionality: -->
                 <extensions>true</extensions>
             </plugin>
@@ -47,6 +47,49 @@ In your `pom.xml` add this:
     </build>
 </project>
 ```
+To create the `module.xml` (FirstSpirit module descriptor) you must provide a `module.vm` ([Apache Velocity macro](http://velocity.apache.org/engine/devel/user-guide.html)) in the path `src/main/fsm`:
+```
+<module>
+    #addHeader($project)
+    <components>
+        #addModuleXmlFragments($project)
+    </components>
+
+    <resources>
+        #addResources($project "module" "/lib")
+    </resources>
+</module>
+```
+The example above will add the common tags for name, version etc., collect module fragment xml if avaiable and prints at the end all Maven dependencies as resource tags.
+
+To create an module fragment xml in any other jar Maven module just this to the `pom.xml`:
+```
+</project>
+....
+    <build>
+        ...
+        <plugins>
+            ...
+            <plugin>
+                <groupId>com.github.zaplatynski</groupId>
+                <artifactId>fsm-packagetype</artifactId>
+                <version>2.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>fragmentModuleXml</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            ...
+        </plugins>
+    </build>
+...
+</project>
+```
+Again in the path `src/main/fsm` there must be an in the path `module.vm` in which you can define e.g. an FirstSpirit Executable or Service.
+
 Inside the `fsm.xml` you need to specify the [Maven assembly plugin](http://maven.apache.org/plugins/maven-assembly-plugin/) descriptor to create a typical FSM file layout:
 ```
 <assembly xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -59,7 +102,7 @@ Inside the `fsm.xml` you need to specify the [Maven assembly plugin](http://mave
     <includeBaseDirectory>false</includeBaseDirectory>
     <files>
         <file>
-            <source>src/main/resources/module.xml</source>
+            <source>target/module.xml</source>
             <outputDirectory>META-INF</outputDirectory>
             <filtered>true</filtered>
         </file>
@@ -76,21 +119,8 @@ Inside the `fsm.xml` you need to specify the [Maven assembly plugin](http://mave
     </dependencySets>
 </assembly>
 ```
-The FSM Maven package type will take care to rename the zip file to a FSM file. In the dependency set you specify your main dependencies. A minimal `module.xml` could look like this:
-```
-<module>
-    <name>${project.artifactId}</name>
-    <displayName>${project.name}</displayName>
-    <version>${project.version}</version>
-
-    <resources>
-        <resource scope="module">lib/my-jar-artifactId-${project.version}.jar</resource>
-        ...
-    </resources>
-</module>
-```
-Of cause feel free to combine this with [Monday Consulting's FSM plugin](https://github.com/monday-consulting/fsm-maven-plugin) if you don't want to maintain the module.xml manually.
-
+The FSM Maven package type will take care to rename the zip file to a FSM file. In the dependency set you specify your main dependencies.
+ 
 If you want to have a kind of real world example then have a look at my [Second-Hand Log project](https://github.com/zaplatynski/second-hand-log) or my [FSM Libray Creator project](https://github.com/zaplatynski/fsm-library-creator) here on GitHub. As a blue print for more common project setup there is a [example project](https://github.com/zaplatynski/fsm-example-project) here on GitHub too.
 
 ## Build command
