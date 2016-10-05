@@ -26,3 +26,18 @@
     #include($importFile)
 #end
 #end
+
+## Macro to render a standard module xml
+#macro (defaultModuleXml $project )
+<module>
+
+    #addHeader($project)
+
+    <components>
+
+        #addModuleXmlFragments($project)
+
+    </components>
+
+</module>
+#end
