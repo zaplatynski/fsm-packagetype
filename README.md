@@ -5,7 +5,7 @@ This is a simple approach to create a Maven package type for FirstSpirit modules
 ## How to use
 
 In your `pom.xml` add this:
-```
+```xml
 <project>
 
     <groupId>my-group</groupId>
@@ -48,7 +48,7 @@ In your `pom.xml` add this:
 </project>
 ```
 To create the `module.xml` (FirstSpirit module descriptor) you must provide a `module.vm` ([Apache Velocity macro](http://velocity.apache.org/engine/devel/user-guide.html)) in the path `src/main/fsm`:
-```
+```xml
 <module>
     #addHeader($project)
     
@@ -65,7 +65,7 @@ The example above will add the common tags for name, version etc. (macro #addHea
 Besides those three macros the variable $project give access to the whole [Maven project](https://maven.apache.org/ref/3.2.3/apidocs/org/apache/maven/project/MavenProject.html). In addition all user defined Maven properties are available too. Since Velocity can not deal with dots in variable names please name them accordingly.
 
 To create an module fragment xml in any other jar Maven module just this to the `pom.xml`:
-```
+```xml
 </project>
 ....
     <build>
@@ -93,7 +93,7 @@ To create an module fragment xml in any other jar Maven module just this to the 
 Again in the path `src/main/fsm` there must be an in the path `module.vm` in which you can define e.g. an FirstSpirit Executable or Service.
 
 Inside the above mentioned `fsm.xml` you need to specify the [Maven assembly plugin](http://maven.apache.org/plugins/maven-assembly-plugin/) descriptor to create a typical FSM file layout:
-```
+```xml
 <assembly xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
           xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3 http://maven.apache.org/xsd/assembly-1.1.3.xsd">
