@@ -28,7 +28,7 @@
 #end
 
 ## Macro to render a standard module xml
-#macro (defaultModuleXml $project )
+#macro (defaultModuleXml $project)
 <module>
 
     #addHeader($project)

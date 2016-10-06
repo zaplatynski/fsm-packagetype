@@ -38,9 +38,6 @@ public class VelocityManager {
    * @param templatePath the template path
    */
   public void renderModuleXml(final Writer writer, final String templatePath) {
-    System.out.println("templatePath: " + templatePath);
-    System.out.println(RuntimeConstants.FILE_RESOURCE_LOADER_PATH + ": "
-        + velocityEngine.getProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH));
     final Template moduleTemplate = velocityEngine.getTemplate(templatePath);
     moduleTemplate.merge(context, writer);
   }
