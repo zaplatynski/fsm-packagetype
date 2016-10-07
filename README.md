@@ -47,21 +47,11 @@ In your `pom.xml` add this:
     </build>
 </project>
 ```
-To create the `module.xml` (FirstSpirit module descriptor) you must provide a `module.vm` ([Apache Velocity macro](http://velocity.apache.org/engine/devel/user-guide.html)) in the path `src/main/fsm`:
-```xml
-<module>
-    #addHeader($project)
-    
-    <components>
-        #addModuleXmlFragments($project)
-    </components>
-
-    <resources>
-        #addResources($project "module" "lib")
-    </resources>
-</module>
+To create the `module.xml` (FirstSpirit module descriptor) you must provide a `module.vm` ([Apache Velocity macro](http://velocity.apache.org/engine/devel/user-guide.html)) in the path `src/main/fsm` with content:
 ```
-The example above will add the common tags for name, version etc. (macro #addHeader), collect module fragment xml if avaiable (macro #addModuleXmlFragments) and prints at the end all Maven dependencies as resource tags (macro #addResources).
+#defaultModuleXml($project)
+```
+The example above will add the common tags for name, version etc. (sub macro #addHeader) and collect module fragment xml if avaiable (sub macro #addModuleXmlFragments).
 Besides those three macros the variable $project give access to the whole [Maven project](https://maven.apache.org/ref/3.2.3/apidocs/org/apache/maven/project/MavenProject.html). In addition all user defined Maven properties are available too. Since Velocity can not deal with dots in variable names please name them accordingly.
 
 To create an module fragment xml in any other jar Maven module just this to the `pom.xml`:
