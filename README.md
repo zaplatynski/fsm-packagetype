@@ -1,4 +1,4 @@
-# Maven Package Type For FSMs [![Dependency Status](https://www.versioneye.com/java/com.github.zaplatynski:fsm-packagetype/2.1/badge?style=flat)](https://www.versioneye.com/java/com.github.zaplatynski:fsm-packagetype/2.1) [![Build Status](https://travis-ci.org/zaplatynski/fsm-packagetype.svg?branch=master)](https://travis-ci.org/zaplatynski/fsm-packagetype)  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.zaplatynski/fsm-packagetype/badge.svg?style=flat)](http://mvnrepository.com/artifact/com.github.zaplatynski/fsm-packagetype)
+# Maven Package Type For FSMs [![Build Status](https://travis-ci.org/zaplatynski/fsm-packagetype.svg?branch=master)](https://travis-ci.org/zaplatynski/fsm-packagetype)  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.zaplatynski/fsm-packagetype/badge.svg?style=flat)](http://mvnrepository.com/artifact/com.github.zaplatynski/fsm-packagetype)
 
 This is a simple approach to create a Maven package type for FirstSpirit modules (FSM) with a fully working Maven lifecycle inclung install and deploy.
 
@@ -24,7 +24,7 @@ In your `pom.xml` add this:
             <plugin>
                 <groupId>com.github.zaplatynski</groupId>
                 <artifactId>fsm-packagetype</artifactId>
-                <version>2.1</version>
+                <version>2.1.1</version>
                 <!-- this is important when extending core Maven functionality: -->
                 <extensions>true</extensions>
             </plugin>
