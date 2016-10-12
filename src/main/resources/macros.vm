@@ -14,7 +14,7 @@
 
 ## Macro to add transitive dependencies from pom
 #macro(addResources $mavenProject $scope $libPath)
-#foreach( $dependency in $mavenProject.getDependencyArtifacts() )
+#foreach( $dependency in $mavenProject.getArtifacts() )
 #if( ${dependency.scope} == "compile" || ${dependency.scope} == "runtime")
 #set($depName="${dependency.artifactId}")
 #set($depVersion="${dependency.version}")

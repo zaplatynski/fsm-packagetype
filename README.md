@@ -103,15 +103,14 @@ Inside the above mentioned `fsm.xml` you need to specify the [Maven assembly plu
         <dependencySet>
             <outputDirectory>lib</outputDirectory>
             <includes>
-                <include>my-groupId:my-jar-artifactId</include>
-                 ...
+                <include>${project.groupId}:${project.artifactId}</include>
             </includes>
             <useTransitiveFiltering>true</useTransitiveFiltering>
         </dependencySet>
     </dependencySets>
 </assembly>
 ```
-The FSM Maven package type will take care to rename the zip file to a FSM file. In the dependency set you specify your main dependencies.
+The FSM Maven package type will take care to rename the zip file to a FSM file. In the dependency set you specify yourself.
  
 If you want to have a kind of real world example then have a look at my [Second-Hand Log project](https://github.com/zaplatynski/second-hand-log) or my [FSM Libray Creator project](https://github.com/zaplatynski/fsm-library-creator) here on GitHub. As a blue print for more common project setup there is a [example project](https://github.com/zaplatynski/fsm-example-project) here on GitHub too.
 

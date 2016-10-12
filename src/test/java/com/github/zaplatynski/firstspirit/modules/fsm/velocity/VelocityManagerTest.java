@@ -242,7 +242,7 @@ public class VelocityManagerTest {
 
     when(project.getArtifactId()).thenReturn("test");
     when(project.getVersion()).thenReturn("1.0");
-    when(project.getDependencyArtifacts()).thenReturn(mavenDependencies);
+    when(project.getArtifacts()).thenReturn(mavenDependencies);
 
     RandomAccessFile moduleVM = new RandomAccessFile(sourceFile, "rw");
 
