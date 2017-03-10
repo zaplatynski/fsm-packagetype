@@ -205,6 +205,22 @@
                     <artifactId>maven-artifact</artifactId>
                     <groupId>org.apache.maven</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>plexus-classworlds</artifactId>
+                    <groupId>org.codehaus.plexus</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>plexus-component-annotations</artifactId>
+                    <groupId>org.codehaus.plexus</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-io</artifactId>
+                    <groupId>commons-io</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>maven-common-artifact-filters</artifactId>
+                    <groupId>org.apache.maven.shared</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
 
