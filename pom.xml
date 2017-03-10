@@ -151,7 +151,7 @@
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
-            <version>2.6</version>
+            <version>3.0.0</version>
             <exclusions>
                 <exclusion>
                     <artifactId>plexus-utils</artifactId>
@@ -240,7 +240,7 @@
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.6.0</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -363,7 +363,7 @@
                             <dependency>
                                 <groupId>org.codehaus.mojo</groupId>
                                 <artifactId>extra-enforcer-rules</artifactId>
-                                <version>1.0-beta-5</version>
+                                <version>1.0-beta-6</version>
                             </dependency>
                         </dependencies>
                     </plugin>
@@ -392,7 +392,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-pmd-plugin</artifactId>
-                        <version>3.6</version>
+                        <version>3.7</version>
                         <configuration>
                             <linkXRef>false</linkXRef>
                             <printFailingErrors>true</printFailingErrors>
@@ -452,7 +452,7 @@
                         <!-- see https://www.owasp.org/index.php/OWASP_Dependency_Check -->
                         <groupId>org.owasp</groupId>
                         <artifactId>dependency-check-maven</artifactId>
-                        <version>1.4.3</version>
+                        <version>1.4.4.1</version>
                         <configuration>
                             <failBuildOnCVSS>8</failBuildOnCVSS>
                             <skipProvidedScope>true</skipProvidedScope>
