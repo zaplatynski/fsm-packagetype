@@ -1,6 +1,6 @@
 ## Macro to fill names from pom
 #macro(addName $mavenProject)
-    <name>${mavenProject.artifactId}</name>
+    <name>${mavenProject.groupId}.${mavenProject.artifactId}</name>
     #if( $mavenProject.name )<displayname>${mavenProject.name}</displayname>
     #end
 #end
@@ -16,12 +16,20 @@
 #macro(addResources $mavenProject $scope $libPath)
 #foreach( $dependency in $mavenProject.getArtifacts() )
 #if( ${dependency.scope} == "compile" || ${dependency.scope} == "runtime")
-#set($depName="${dependency.artifactId}")
-#set($depVersion="${dependency.version}")
-#set($depFile = "${libPath}/${dependency.file.name}")
-        <resource #if($scope != "")scope="${scope}"#end name="${depName}" version="${depVersion}">${depFile}</resource>
+    #addResource($dependency $scope $libPath)
 #end
 #end
+#end
+
+## Marco to add a resource
+#macro(addResource $currentArtifact $scope $libPath)
+#set($depName = "${currentArtifact.groupId}.${currentArtifact.artifactId}")
+#set($depVersion = "${currentArtifact.version}")
+#set($depFile = "${libPath}/${currentArtifact.file.name}")
+<resource #if($scope != "")scope="${scope}"#end name="${depName}" version="${depVersion}">${depFile}</resource>
+#set($depName = "")
+#set($depVersion = "")
+#set($depFile = "")
 #end
 
 ## Macro to include all module xml fragments from neighbor maven modules

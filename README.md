@@ -51,8 +51,12 @@ To create the `module.xml` (FirstSpirit module descriptor) you must provide a `m
 ```
 #defaultModuleXml($project)
 ```
-The example above will add the common tags for name, version etc. (sub macro #addHeader) and collect module fragment xml if avaiable (sub macro #addModuleXmlFragments).
-Besides those three macros the variable $project give access to the whole [Maven project](https://maven.apache.org/ref/3.2.3/apidocs/org/apache/maven/project/MavenProject.html). In addition all user defined Maven properties are available too. Since Velocity can not deal with dots in variable names please name them accordingly.
+The example (see [macros.vm](src/main/resources/macros.vm)) above will add the common tags for 
+name, version etc. (sub macro #addHeader) and collect module fragment xml if avaiable
+(sub macro #addModuleXmlFragments). Besides those three macros the variable $project give access 
+to the whole
+[Maven project](https://maven.apache.org/ref/3.2.3/apidocs/org/apache/maven/project/MavenProject.html).
+In addition all user defined Maven properties are available too. Since Velocity can not deal with dots in variable names please name them accordingly.
 
 To create an module fragment xml in any other jar Maven module just this to the `pom.xml`:
 ```xml

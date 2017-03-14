@@ -4,7 +4,6 @@ import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.artifact.handler.ArtifactHandler;
 import org.apache.maven.project.MavenProject;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -73,13 +72,9 @@ public class VelocityManagerTest {
     testling = new VelocityManager(project);
   }
 
-  @After
-  public void tearDown() throws Exception {
-    //Thread.currentThread().sleep(50000);
-  }
-
   @Test
   public void renderModuleXmlSimpleHeader() throws Exception {
+    when(project.getGroupId()).thenReturn("group");
     when(project.getArtifactId()).thenReturn("test");
     when(project.getVersion()).thenReturn("1.0");
 
@@ -94,7 +89,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-        "    <name>test</name>\n" +
+        "    <name>group.test</name>\n" +
         "    <version>1.0</version>\n" +
         "</module>"));
   }
@@ -110,6 +105,7 @@ public class VelocityManagerTest {
 
     testling = new VelocityManager(project);
 
+    when(project.getGroupId()).thenReturn("group");
     when(project.getArtifactId()).thenReturn("test");
     when(project.getVersion()).thenReturn("1.0");
 
@@ -124,13 +120,14 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>test</name>\n" +
+            "    <name>group.test</name>\n" +
             "    <version>1.0</version>\n" +
             "</module>"));
   }
 
   @Test
   public void renderModuleXmlFullHeader() throws Exception {
+    when(project.getGroupId()).thenReturn("group");
     when(project.getArtifactId()).thenReturn("test");
     when(project.getVersion()).thenReturn("1.0");
     when(project.getName()).thenReturn("My FSM");
@@ -147,7 +144,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-        "    <name>test</name>\n" +
+        "    <name>group.test</name>\n" +
         "    <displayname>My FSM</displayname>\n" +
         "    <description>My test FSM</description>\n" +
         "    <version>1.0</version>\n" +
@@ -156,7 +153,7 @@ public class VelocityManagerTest {
 
   @Test
   public void renderModuleXmlMavenProperties() throws Exception {
-
+    when(project.getGroupId()).thenReturn("group");
     when(project.getArtifactId()).thenReturn("test");
     when(project.getVersion()).thenReturn("1.0");
 
@@ -171,7 +168,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>test</name>\n" +
+            "    <name>group.test</name>\n" +
             "    <version>1.0</version>\n" +
             "\n" +
             "This is a custom value.\n" +
@@ -181,6 +178,7 @@ public class VelocityManagerTest {
 
   @Test
   public void renderModuleXmlWitFragments() throws Exception {
+    when(project.getGroupId()).thenReturn("group");
     when(project.getArtifactId()).thenReturn("test");
     when(project.getVersion()).thenReturn("1.0");
     when(project.getName()).thenReturn("My FSM");
@@ -210,7 +208,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>test</name>\n" +
+            "    <name>group.test</name>\n" +
             "    <displayname>My FSM</displayname>\n" +
             "    <description>My test FSM</description>\n" +
             "    <version>1.0</version>\n" +
@@ -240,6 +238,7 @@ public class VelocityManagerTest {
     mavenDependencies.add(new DefaultArtifact("groupId3","artifdactId3","3.0","test","jar",null,
         artifactResolver));
 
+    when(project.getGroupId()).thenReturn("group");
     when(project.getArtifactId()).thenReturn("test");
     when(project.getVersion()).thenReturn("1.0");
     when(project.getArtifacts()).thenReturn(mavenDependencies);
@@ -256,13 +255,13 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>test</name>\n" +
+            "    <name>group.test</name>\n" +
             "    <version>1.0</version>\n" +
             "\n" +
             " <resources>\n" +
-            "        <resource scope=\"module\" name=\"artifdactId1\" version=\"1.0\">" +
+            "    <resource scope=\"module\" name=\"groupId1.artifdactId1\" version=\"1.0\">" +
             "lib/artifact1-1.0.jar</resource>\n" +
-            "        <resource scope=\"module\" name=\"artifdactId2\" version=\"2.0\">" +
+            "    <resource scope=\"module\" name=\"groupId2.artifdactId2\" version=\"2.0\">" +
             "lib/artifact2-2.0.jar</resource>\n" +
             " </resources>\n" +
             "\n" +
