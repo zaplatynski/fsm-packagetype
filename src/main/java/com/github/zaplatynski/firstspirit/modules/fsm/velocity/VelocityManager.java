@@ -8,6 +8,7 @@ import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 import java.io.Writer;
+import java.util.Objects;
 import java.util.Properties;
 
 
@@ -27,6 +28,7 @@ public class VelocityManager {
    * @param project the project
    */
   public VelocityManager(final MavenProject project) {
+    Objects.requireNonNull(project, "Maven project is null");
     velocityEngine = setUpVelocity(project);
     context = setupVelocityContext(project);
   }
@@ -50,6 +52,7 @@ public class VelocityManager {
 
     // add all Maven properties to context
     for (String property : project.getProperties().stringPropertyNames()) {
+      System.out.println(property);
       context.put(property, project.getProperties().getProperty(property));
     }
 

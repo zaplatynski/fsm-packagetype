@@ -89,7 +89,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-        "    <name>group.test</name>\n" +
+        "    <name>group:test</name>\n" +
         "    <version>1.0</version>\n" +
         "</module>"));
   }
@@ -120,7 +120,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>group.test</name>\n" +
+            "    <name>group:test</name>\n" +
             "    <version>1.0</version>\n" +
             "</module>"));
   }
@@ -144,7 +144,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-        "    <name>group.test</name>\n" +
+        "    <name>group:test</name>\n" +
         "    <displayname>My FSM</displayname>\n" +
         "    <description>My test FSM</description>\n" +
         "    <version>1.0</version>\n" +
@@ -168,7 +168,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>group.test</name>\n" +
+            "    <name>group:test</name>\n" +
             "    <version>1.0</version>\n" +
             "\n" +
             "This is a custom value.\n" +
@@ -193,7 +193,7 @@ public class VelocityManagerTest {
 
     final File parent = new File(templateRoot, "jarmodule/target");
     parent.mkdirs();
-    File fragmentModuleXml = new File(parent, "module.xml");
+    File fragmentModuleXml = new File(parent, "module-fragment.xml");
     fragmentModuleXml.createNewFile();
 
     RandomAccessFile moduleXml = new RandomAccessFile(fragmentModuleXml, "rw");
@@ -208,7 +208,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>group.test</name>\n" +
+            "    <name>group:test</name>\n" +
             "    <displayname>My FSM</displayname>\n" +
             "    <description>My test FSM</description>\n" +
             "    <version>1.0</version>\n" +
@@ -255,14 +255,70 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>group.test</name>\n" +
+            "    <name>group:test</name>\n" +
             "    <version>1.0</version>\n" +
             "\n" +
             " <resources>\n" +
-            "    <resource scope=\"module\" name=\"groupId1.artifdactId1\" version=\"1.0\">" +
+            "    <resource scope=\"module\" name=\"groupId1:artifdactId1\" version=\"1.0\">" +
             "lib/artifact1-1.0.jar</resource>\n" +
-            "    <resource scope=\"module\" name=\"groupId2.artifdactId2\" version=\"2.0\">" +
+            "    <resource scope=\"module\" name=\"groupId2:artifdactId2\" version=\"2.0\">" +
             "lib/artifact2-2.0.jar</resource>\n" +
+            " </resources>\n" +
+            "\n" +
+            "</module>"));
+  }
+
+  @Test
+  public void renderModuleXmlWithMavenDependenciesModeIsolated() throws Exception {
+
+    reset(project);
+
+    mavenProjectProperties.setProperty("fsmode", "isolated");
+    when(project.getProperties()).thenReturn(mavenProjectProperties);
+
+    when(parentProject.getBasedir()).thenReturn(templateRoot);
+    when(project.getParent()).thenReturn(parentProject);
+
+    testling = new VelocityManager(project);
+
+    final DefaultArtifact artifactCompileScope = new DefaultArtifact("groupId1", "artifdactId1",
+        "1.0", "compile", "jar", null,        artifactResolver);
+    artifactCompileScope.setFile(new File("artifact1-1.0.jar"));
+    final DefaultArtifact artifactRunetimeScope = new DefaultArtifact("groupId2", "artifdactId2",
+        "2.0", "runtime", "jar", null,        artifactResolver);
+    artifactRunetimeScope.setFile(new File("artifact2-2.0.jar"));
+
+    Set<Artifact> mavenDependencies = new HashSet<>();
+    mavenDependencies.add(artifactCompileScope);
+    mavenDependencies.add(artifactRunetimeScope);
+    mavenDependencies.add(new DefaultArtifact("groupId3","artifdactId3","3.0","test","jar",null,
+        artifactResolver));
+
+    when(project.getGroupId()).thenReturn("group");
+    when(project.getArtifactId()).thenReturn("test");
+    when(project.getVersion()).thenReturn("1.0");
+    when(project.getArtifacts()).thenReturn(mavenDependencies);
+
+    RandomAccessFile moduleVM = new RandomAccessFile(sourceFile, "rw");
+
+    moduleVM.writeBytes("<module>\n#addHeader($project)\n\n <resources>\n" +
+        "#addResources($project \"module\" \"lib\")\n </resources>\n\n</module>");
+    moduleVM.close();
+
+    Writer writer = new StringWriter();
+
+    testling.renderModuleXml(writer, relativeModuleVMPath);
+
+    assertThat(writer.toString(), is(
+        "<module>\n" +
+            "    <name>group:test</name>\n" +
+            "    <version>1.0</version>\n" +
+            "\n" +
+            " <resources>\n" +
+            "    <resource mode=\"isolated\" scope=\"module\" name=\"groupId1:artifdactId1\" " +
+            "version=\"1.0\">lib/artifact1-1.0.jar</resource>\n" +
+            "    <resource mode=\"isolated\" scope=\"module\" name=\"groupId2:artifdactId2\" " +
+            "version=\"2.0\">lib/artifact2-2.0.jar</resource>\n" +
             " </resources>\n" +
             "\n" +
             "</module>"));
