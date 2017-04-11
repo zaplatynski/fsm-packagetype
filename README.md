@@ -84,7 +84,8 @@ To create an module fragment xml in any other jar Maven module just this to the 
 ...
 </project>
 ```
-Again in the path `src/main/fsm` there must be an in the path `module.vm` in which you can define e.g. an FirstSpirit Executable or Service.
+Again in the `src/main/fsm` there must be an in the path `module-fragment.vm` in which you can 
+define e.g. an FirstSpirit Executable or Service.
 
 Inside the above mentioned `fsm.xml` you need to specify the [Maven assembly plugin](http://maven.apache.org/plugins/maven-assembly-plugin/) descriptor to create a typical FSM file layout:
 ```xml

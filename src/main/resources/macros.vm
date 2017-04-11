@@ -26,16 +26,22 @@
 #set($depName = "${currentArtifact.groupId}.${currentArtifact.artifactId}")
 #set($depVersion = "${currentArtifact.version}")
 #set($depFile = "${libPath}/${currentArtifact.file.name}")
-<resource #if($scope != "")scope="${scope}"#end name="${depName}" version="${depVersion}">${depFile}</resource>
+#if($fsmode)
+#set($depMode='mode="isolated"')
+#else
+#set($depMode="")
+#end
+<resource #if($fsmode && $fsmode != "")mode="${fsmode}" #end#if($scope != "")scope="${scope}"#end name="${depName}" version="${depVersion}">${depFile}</resource>
 #set($depName = "")
 #set($depVersion = "")
 #set($depFile = "")
+#set($depMode="")
 #end
 
 ## Macro to include all module xml fragments from neighbor maven modules
 #macro(addModuleXmlFragments $mavenProject)
 #foreach( $childModule in $project.getParent().getModules() )
-    #set($importFile = "../../../../$childModule/target/module.xml")
+    #set($importFile = "../../../../$childModule/target/module-fragment.xml")
     #include($importFile)
 #end
 #end

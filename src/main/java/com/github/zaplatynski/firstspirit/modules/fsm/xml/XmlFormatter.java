@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.Objects;
 
 
 /**
@@ -27,7 +28,7 @@ public class XmlFormatter {
    * @param moduleXml the module xml
    */
   public XmlFormatter(final File moduleXml) {
-    this.moduleXml = moduleXml;
+    this.moduleXml = Objects.requireNonNull(moduleXml, "module.xml file is null!");
   }
 
   /**

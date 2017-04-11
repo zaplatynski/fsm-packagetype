@@ -9,6 +9,7 @@ import org.xml.sax.SAXException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -30,6 +31,7 @@ public class XmlValidator {
    */
   public Optional<Document> checkModuleXml(File moduleXml) throws MojoFailureException,
   MojoExecutionException {
+    Objects.requireNonNull(moduleXml, "module.xml file is null!");
     DocumentBuilderFactory factory = createDocumentBuilderFactory();
     DocumentBuilder builder = createDocumentBuilder(factory);
 
@@ -43,7 +45,7 @@ public class XmlValidator {
 
   private static DocumentBuilder createDocumentBuilder(final DocumentBuilderFactory factory)
       throws MojoFailureException {
-    DocumentBuilder builder = null;
+    DocumentBuilder builder;
     try {
       builder = factory.newDocumentBuilder();
     } catch (ParserConfigurationException e) {
@@ -59,8 +61,8 @@ public class XmlValidator {
     return factory;
   }
 
-  private static Document checkForWellFormedness(final File moduleXml, final DocumentBuilder
-      builder)
+  private static Document checkForWellFormedness(final File moduleXml,
+                                                 final DocumentBuilder builder)
       throws MojoExecutionException, MojoFailureException {
     Document document;
     try (FileInputStream moduleXmlStream = new FileInputStream(moduleXml)) {

@@ -193,7 +193,7 @@ public class VelocityManagerTest {
 
     final File parent = new File(templateRoot, "jarmodule/target");
     parent.mkdirs();
-    File fragmentModuleXml = new File(parent, "module.xml");
+    File fragmentModuleXml = new File(parent, "module-fragment.xml");
     fragmentModuleXml.createNewFile();
 
     RandomAccessFile moduleXml = new RandomAccessFile(fragmentModuleXml, "rw");
