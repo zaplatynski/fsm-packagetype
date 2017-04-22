@@ -7,3 +7,5 @@ cache:
 script: mvn -B clean package -P analysis
 install:
     -
+after_success:
+    - mvn -B clean test jacoco:report coveralls:report -P coverage
