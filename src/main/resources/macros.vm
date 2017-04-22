@@ -1,6 +1,6 @@
 ## Macro to fill names from pom
 #macro(addName $mavenProject)
-    <name>${mavenProject.groupId}:${mavenProject.artifactId}</name>
+    <name>${mavenProject.artifactId.replaceAll("\\.","-")}</name>
     #if( $mavenProject.name )<displayname>${mavenProject.name}</displayname>
     #end
 #end

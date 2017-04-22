@@ -89,7 +89,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-        "    <name>group:test</name>\n" +
+        "    <name>test</name>\n" +
         "    <version>1.0</version>\n" +
         "</module>"));
   }
@@ -120,7 +120,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>group:test</name>\n" +
+            "    <name>test</name>\n" +
             "    <version>1.0</version>\n" +
             "</module>"));
   }
@@ -144,7 +144,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-        "    <name>group:test</name>\n" +
+        "    <name>test</name>\n" +
         "    <displayname>My FSM</displayname>\n" +
         "    <description>My test FSM</description>\n" +
         "    <version>1.0</version>\n" +
@@ -168,7 +168,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>group:test</name>\n" +
+            "    <name>test</name>\n" +
             "    <version>1.0</version>\n" +
             "\n" +
             "This is a custom value.\n" +
@@ -208,7 +208,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>group:test</name>\n" +
+            "    <name>test</name>\n" +
             "    <displayname>My FSM</displayname>\n" +
             "    <description>My test FSM</description>\n" +
             "    <version>1.0</version>\n" +
@@ -255,7 +255,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>group:test</name>\n" +
+            "    <name>test</name>\n" +
             "    <version>1.0</version>\n" +
             "\n" +
             " <resources>\n" +
@@ -311,7 +311,7 @@ public class VelocityManagerTest {
 
     assertThat(writer.toString(), is(
         "<module>\n" +
-            "    <name>group:test</name>\n" +
+            "    <name>test</name>\n" +
             "    <version>1.0</version>\n" +
             "\n" +
             " <resources>\n" +
