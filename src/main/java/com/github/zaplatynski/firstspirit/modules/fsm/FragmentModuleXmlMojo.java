@@ -43,7 +43,7 @@ public class FragmentModuleXmlMojo extends AbstractMojo {
           + "module-fragment.xml is null. Please provide a target path.");
     }
 
-    ModuleXmlParser parser = new ModuleXmlParser(source, target, project, getLog());
+    ModuleXmlParser parser = new ModuleXmlParser(source, target, project);
     parser.parseModuleVm();
   }
 

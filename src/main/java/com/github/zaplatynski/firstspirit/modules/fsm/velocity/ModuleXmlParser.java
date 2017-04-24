@@ -3,7 +3,6 @@ package com.github.zaplatynski.firstspirit.modules.fsm.velocity;
 import org.apache.maven.plugin.AbstractMojoExecutionException;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 
 import java.io.File;
@@ -20,38 +19,31 @@ public class ModuleXmlParser {
   private final String source;
   private final File target;
   private final MavenProject project;
-  private final Log log;
   private final VelocityManager velocity;
   private boolean moduleVmExistent;
 
   /**
    * Instantiates a new Module xml parser.
-   *
-   * @param source  the source
+   *  @param source  the source
    * @param target  the target
    * @param project the project
-   * @param log     the log
    */
-  public ModuleXmlParser(final String source, final File target, final MavenProject project,
-                         final Log log) {
-    this(source,target,project, log, new VelocityManager(project));
+  public ModuleXmlParser(final String source, final File target, final MavenProject project) {
+    this(source,target,project, new VelocityManager(project));
   }
 
   /**
    * Instantiates a new Module xml parser. Used in tests.
-   *
-   * @param source   the source
+   *  @param source   the source
    * @param target   the target
    * @param project  the project
-   * @param log      the log
    * @param velocity the velocity
    */
   public ModuleXmlParser(final String source, final File target, final MavenProject project,
-                         final Log log, final VelocityManager velocity) {
+                         final VelocityManager velocity) {
     this.source = Objects.requireNonNull(source);
     this.target = Objects.requireNonNull(target);
     this.project = Objects.requireNonNull(project);
-    this.log = Objects.requireNonNull(log);
     this.velocity = Objects.requireNonNull(velocity);
   }
 
@@ -75,8 +67,8 @@ public class ModuleXmlParser {
       }
 
     } else {
-      throw new MojoExecutionException(moduleVm,"Velocity macro " + moduleVm.getName() + " is " +
-          "missing","The velocity macro does not exist at '"
+      throw new MojoExecutionException(moduleVm,"Velocity macro " + moduleVm.getName() + " is "
+          + "missing","The velocity macro does not exist at '"
           + moduleVm.getAbsolutePath() + "'. Skip execution!");
     }
   }

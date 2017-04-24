@@ -51,7 +51,7 @@ public class ModuleXmlParserTest {
   public void setUp() throws Exception {
     source = "src/main/fsm/module.vm";
     target = new File(tempFiles.newFolder(),"module.xml");
-    testling = new ModuleXmlParser(source, target,project, log, velocity);
+    testling = new ModuleXmlParser(source, target,project, velocity);
 
     when(project.getBasedir()).thenReturn(tempFiles.newFolder());
   }

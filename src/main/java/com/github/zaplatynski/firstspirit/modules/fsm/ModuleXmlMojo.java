@@ -58,7 +58,7 @@ public class ModuleXmlMojo extends AbstractMojo {
     }
 
     // Render module.xml
-    ModuleXmlParser parser = new ModuleXmlParser(source,target,project,getLog());
+    ModuleXmlParser parser = new ModuleXmlParser(source,target,project);
     parser.parseModuleVm();
 
     // Do additional work
