@@ -27,7 +27,7 @@ In your `pom.xml` add this:
             <plugin>
                 <groupId>com.github.zaplatynski</groupId>
                 <artifactId>fsm-packagetype</artifactId>
-                <version>2.2.0</version>
+                <version>2.2.1</version>
                 <!-- this is important when extending core Maven functionality: -->
                 <extensions>true</extensions>
             </plugin>
