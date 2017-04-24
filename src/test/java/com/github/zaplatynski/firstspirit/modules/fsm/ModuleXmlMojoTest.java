@@ -1,5 +1,6 @@
 package com.github.zaplatynski.firstspirit.modules.fsm;
 
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.junit.Before;
 import org.junit.Rule;
@@ -42,6 +43,8 @@ public class ModuleXmlMojoTest {
   @ObjectUnderTest(id = "testling")
   private ModuleXmlMojo testling = new ModuleXmlMojo();
 
+  private ModuleXmlMojo testlingMissingParameters = new ModuleXmlMojo();
+
   public ModuleXmlMojoTest() throws IOException {
   }
 
@@ -60,6 +63,11 @@ public class ModuleXmlMojoTest {
     when(project.getBasedir()).thenReturn(new File("src/test/resources/"));
 
     testling.execute();
+  }
+
+  @Test(expected = MojoFailureException.class)
+  public void executeWithErrors() throws Exception {
+    testlingMissingParameters.execute();
   }
 
 }
