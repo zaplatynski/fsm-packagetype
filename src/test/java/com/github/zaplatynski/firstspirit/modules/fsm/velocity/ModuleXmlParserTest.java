@@ -20,7 +20,6 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -57,14 +56,12 @@ public class ModuleXmlParserTest {
     when(project.getBasedir()).thenReturn(tempFiles.newFolder());
   }
 
-  @Test
+  @Test(expected = MojoExecutionException.class)
   public void parseModuleVmModuleVmMissing() throws Exception {
 
-    assertThat("Taeget must be non-existant", target.exists(), is(FALSE));
+    assertThat("Target must be non-existant", target.exists(), is(FALSE));
 
     testling.parseModuleVm();
-
-    verify(log, atLeastOnce()).warn(anyString());
   }
 
   @Test

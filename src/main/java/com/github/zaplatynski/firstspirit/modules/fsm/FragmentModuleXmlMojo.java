@@ -19,7 +19,7 @@ import java.io.File;
  * module.xml file without XML validation.
  */
 @Mojo(name = "fragmentModuleXml", defaultPhase = LifecyclePhase.GENERATE_RESOURCES, threadSafe =
-    true,requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
+    true, requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class FragmentModuleXmlMojo extends AbstractMojo {
 
   @Parameter(defaultValue = "/src/main/fsm/module-fragment.vm", required = true)
@@ -31,14 +31,11 @@ public class FragmentModuleXmlMojo extends AbstractMojo {
   @Component
   private MavenProject project;
 
-  protected boolean moduleVmExists;
-
   @Override
   public void execute() throws MojoExecutionException, MojoFailureException {
 
     if (source == null) {
-      getLog().warn("The source is null. Skip execution!");
-      return;
+      throw new MojoFailureException(this, "The source is null", "");
     }
 
     if (target == null) {
@@ -46,7 +43,7 @@ public class FragmentModuleXmlMojo extends AbstractMojo {
           + "module-fragment.xml is null. Please provide a target path.");
     }
 
-    ModuleXmlParser parser = new ModuleXmlParser(source,target,project,getLog());
+    ModuleXmlParser parser = new ModuleXmlParser(source, target, project, getLog());
     parser.parseModuleVm();
   }
 

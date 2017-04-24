@@ -75,7 +75,8 @@ public class ModuleXmlParser {
       }
 
     } else {
-      log.warn("The source file module.vm does not exist at '"
+      throw new MojoExecutionException(moduleVm,"Velocity macro " + moduleVm.getName() + " is " +
+          "missing","The velocity macro does not exist at '"
           + moduleVm.getAbsolutePath() + "'. Skip execution!");
     }
   }
