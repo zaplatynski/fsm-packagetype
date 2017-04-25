@@ -50,14 +50,8 @@ public class FsmMojo extends AbstractMojo {
     getLog().debug("FSM Source: " + source.getAbsolutePath());
     getLog().debug("FSM Target: " + target.getAbsolutePath());
 
-    try {
-      final RenameZipAndAttachFsm zipToFsm = new RenameZipAndAttachFsm(project, source, target);
-      zipToFsm.engage();
-    } catch (final MojoExecutionException | MojoFailureException mojoException) {
-      throw mojoException;
-    } catch (final Exception error) {
-      throw new MojoExecutionException("An error occurred while renaming!", error);
-    }
+    final RenameZipAndAttachFsm zipToFsm = new RenameZipAndAttachFsm(project, source, target);
+    zipToFsm.perform();
 
     getLog().info("Successfully attached FSM as artifact!");
   }

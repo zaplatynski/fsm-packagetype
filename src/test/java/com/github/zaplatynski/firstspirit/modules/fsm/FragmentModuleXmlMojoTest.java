@@ -30,12 +30,19 @@ public class FragmentModuleXmlMojoTest {
   @InjectInto(targetComponentId = "testling", fieldName = "source")
   private String source = "/module-fragment.vm";
 
+  @InjectInto(targetComponentId = "testlingMissingParameterTarget", fieldName = "source")
+  private String source2 = source;
+
   @InjectInto(targetComponentId = "testling", fieldName = "target")
   private File target = new File("target/module-fragment.xml");
 
   @ObjectUnderTest(id = "testling")
   private FragmentModuleXmlMojo testling = new FragmentModuleXmlMojo();
 
+  @ObjectUnderTest(id = "testlingMissingParameterTarget")
+  private FragmentModuleXmlMojo testlingMissingParameterTarget = new FragmentModuleXmlMojo();
+
+  @ObjectUnderTest
   private FragmentModuleXmlMojo testlingMissingParameters = new FragmentModuleXmlMojo();
 
   @Before
@@ -55,8 +62,13 @@ public class FragmentModuleXmlMojoTest {
   }
 
   @Test(expected = MojoFailureException.class)
-  public void executeWithErrors() throws Exception {
+  public void executeWithMissingSource() throws Exception {
     testlingMissingParameters.execute();
+  }
+
+  @Test(expected = MojoFailureException.class)
+  public void executeWithMissingTarget() throws Exception {
+    testlingMissingParameterTarget.execute();
   }
 
 }

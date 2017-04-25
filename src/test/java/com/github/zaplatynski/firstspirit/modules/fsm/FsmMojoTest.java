@@ -40,6 +40,9 @@ public class FsmMojoTest {
   @InjectInto(targetComponentId = "testling", fieldName = "source")
   private File source = new File("target/module.zip");
 
+  @InjectInto(targetComponentId = "testlingMissingTarget", fieldName = "source")
+  private File source2 = source;
+
   @InjectInto(targetComponentId = "testling", fieldName = "target")
   private File target = new File("target/module.fsm");
 
@@ -48,6 +51,11 @@ public class FsmMojoTest {
 
   @ObjectUnderTest(id = "testling")
   private FsmMojo testling = new FsmMojo();
+
+  @ObjectUnderTest(id = "testlingMissingTarget")
+  private FsmMojo testlingMissingTarget = new FsmMojo();
+
+  private FsmMojo testlingMissingSource = new FsmMojo();
 
   @Before
   public void setUp() throws Exception {
@@ -85,6 +93,16 @@ public class FsmMojoTest {
     when(project.getAttachedArtifacts()).thenReturn(Arrays.asList(artifact));
 
     testling.execute();
+  }
+
+  @Test(expected = MojoFailureException.class)
+  public void executeWithMissingSource() throws Exception {
+    testlingMissingSource.execute();
+  }
+
+  @Test(expected = MojoFailureException.class)
+  public void executeWithMissingTarget() throws Exception {
+    testlingMissingTarget.execute();
   }
 
 

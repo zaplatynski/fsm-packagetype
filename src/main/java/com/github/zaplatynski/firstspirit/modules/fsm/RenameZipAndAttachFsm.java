@@ -5,6 +5,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 
 import java.io.File;
+import java.util.Objects;
 
 
 /**
@@ -24,18 +25,9 @@ public class RenameZipAndAttachFsm {
    * @param target  the target
    */
   public RenameZipAndAttachFsm(final MavenProject project, final File source, final File target) {
-    if (project == null) {
-      throw new IllegalArgumentException("Maven project can not be null");
-    }
-    if (source == null) {
-      throw new IllegalArgumentException("Source file can not be null");
-    }
-    if (target == null) {
-      throw new IllegalArgumentException("Target file can not be null");
-    }
-    this.project = project;
-    this.source = source;
-    this.target = target;
+    this.project = Objects.requireNonNull(project,"Maven project can not be null");
+    this.source = Objects.requireNonNull(source,"Source file can not be null");
+    this.target = Objects.requireNonNull(target,"Target file can not be null");
   }
 
   /**
@@ -44,7 +36,7 @@ public class RenameZipAndAttachFsm {
    * @throws MojoExecutionException the mojo execution exception
    * @throws MojoFailureException   the mojo failure exception
    */
-  public void engage() throws MojoExecutionException, MojoFailureException {
+  public void perform() throws MojoExecutionException, MojoFailureException {
 
     if (source.isDirectory()) {
       throw new MojoFailureException(source, "Source is a directory!", "The source should be a zip "

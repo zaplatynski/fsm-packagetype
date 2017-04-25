@@ -12,7 +12,6 @@ import org.needle4j.junit.NeedleBuilders;
 import org.needle4j.junit.NeedleRule;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Properties;
 
 import static org.mockito.Mockito.when;
@@ -31,6 +30,9 @@ public class ModuleXmlMojoTest {
   @InjectInto(targetComponentId = "testling", fieldName = "source")
   private String source = "/module.vm";
 
+  @InjectInto(targetComponentId = "testlingMissingParameterTarget", fieldName = "source")
+  private String source2 = source;
+
   @InjectInto(targetComponentId = "testling", fieldName = "target")
   private File target = new File("target/module.xml");
 
@@ -43,10 +45,10 @@ public class ModuleXmlMojoTest {
   @ObjectUnderTest(id = "testling")
   private ModuleXmlMojo testling = new ModuleXmlMojo();
 
-  private ModuleXmlMojo testlingMissingParameters = new ModuleXmlMojo();
+  @ObjectUnderTest(id = "testlingMissingParameterTarget")
+  private ModuleXmlMojo testlingMissingParameterTarget = new ModuleXmlMojo();
 
-  public ModuleXmlMojoTest() throws IOException {
-  }
+  private ModuleXmlMojo testlingMissingParameterSource = new ModuleXmlMojo();
 
   @Before
   public void setUp() throws Exception {
@@ -66,8 +68,13 @@ public class ModuleXmlMojoTest {
   }
 
   @Test(expected = MojoFailureException.class)
-  public void executeWithErrors() throws Exception {
-    testlingMissingParameters.execute();
+  public void executeWithMissingSource() throws Exception {
+    testlingMissingParameterSource.execute();
+  }
+
+  @Test(expected = MojoFailureException.class)
+  public void executeWithMissingTarget() throws Exception {
+    testlingMissingParameterTarget.execute();
   }
 
 }

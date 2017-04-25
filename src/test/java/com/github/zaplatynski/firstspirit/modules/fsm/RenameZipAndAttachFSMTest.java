@@ -7,9 +7,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import java.io.File;
 
@@ -18,21 +18,23 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
 public class RenameZipAndAttachFSMTest {
 
   @Rule
   public TemporaryFolder temporary = new TemporaryFolder();
 
-  private RenameZipAndAttachFsm testling;
-  private File source;
-  private File target;
+  @Rule
+  public MockitoRule injectMocks = MockitoJUnit.rule();
 
   @Mock
   private MavenProject project;
 
   @Mock
   private Artifact artifact;
+
+  private RenameZipAndAttachFsm testling;
+  private File source;
+  private File target;
 
   @Before
   public void setUp() throws Exception {
@@ -51,7 +53,7 @@ public class RenameZipAndAttachFSMTest {
     assertThat("Expect existant source", source.exists(), is(true));
     assertThat("Expect non existant target", target.exists(), is(false));
 
-    testling.engage();
+    testling.perform();
 
     assertThat("Expect non existant source", source.exists(), is(false));
     assertThat("Expect existant target", target.exists(), is(true));
@@ -70,7 +72,7 @@ public class RenameZipAndAttachFSMTest {
     assertThat("Expect existant source", source.exists(), is(true));
     assertThat("Expect non existant target", target.exists(), is(false));
 
-    testling.engage();
+    testling.perform();
   }
 
   @Test
@@ -83,7 +85,7 @@ public class RenameZipAndAttachFSMTest {
     assertThat("Expect existant source", source.exists(), is(true));
     assertThat("Expect existant target", target.exists(), is(true));
 
-    testling.engage();
+    testling.perform();
 
     assertThat("Expect non existant source", source.exists(), is(false));
     assertThat("Expect existant target", target.exists(), is(true));
@@ -97,20 +99,20 @@ public class RenameZipAndAttachFSMTest {
     assertThat("Expect non existant source", source.exists(), is(false));
     assertThat("Expect non existant target", target.exists(), is(false));
 
-    testling.engage();
+    testling.perform();
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test(expected = NullPointerException.class)
   public void constructorProject() throws Exception {
     new RenameZipAndAttachFsm(null, source, target);
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test(expected = NullPointerException.class)
   public void constructorSource() throws Exception {
     new RenameZipAndAttachFsm(project, null, target);
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test(expected = NullPointerException.class)
   public void constructorTarget() throws Exception {
     new RenameZipAndAttachFsm(project, source, null);
   }
