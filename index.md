@@ -19,7 +19,7 @@ citizen support for FSMs by extending Maven with an own package type called _fsm
 
 ## More information
 
-How to use the Maven package type for FSMs is documented at the GitHub repository at 
+How to use the Maven package type for FSMs is documented in the GitHub repository at 
 [github.com/zaplatynski/fsm-packagetype](https://github.com/zaplatynski/fsm-packagetype).
 
 ## Disclaimer
