@@ -5,9 +5,12 @@ title: Maven Package Type For FirstSpirit Modules
 # Welcome!
 
 Since Maven supports only standard files types such as JARs (*.jar), WARs (*.war), ... there is no 
-build-in support for FSMs (*.fsm) which are used by FirstSpirit as file suffix for archives with 
-deployment descriptor. The Maven package type for FSMs wants to fix that by proviing first 
-citizen support for FSMs by extending Maven with an own package type called _fsm_:
+built-in support for FSMs (*.fsm) which are used by FirstSpirit as file suffix for archives with 
+deployment descriptor.
+
+First, the Maven package type for FSMs wants to fix that by making FSMs first-class citizen by 
+extending Maven with an own package type called _fsm_ so that the full Maven life cycle is 
+supported (pom.xml):
 
 ```xml
 <project>
@@ -16,6 +19,8 @@ citizen support for FSMs by extending Maven with an own package type called _fsm
     ...
 </project>
 ```
+Second, there is support to use Maven's dependency resolution to create FSM's deployment 
+descriptor called _module.xml_ to list all the transitive libraries which are used.
 
 ## More information
 
