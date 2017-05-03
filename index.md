@@ -10,8 +10,8 @@ build-in support for FSMs (*.fsm) which are used by FirstSpirit
 ## More information
 
 How to use the Maven package type for FSMs is documented at the GitHub repository at 
-[github.com/zaplatynski/fsm-packagetype|https://github.com/zaplatynski/fsm-packagetype].
+[github.com/zaplatynski/fsm-packagetype](https://github.com/zaplatynski/fsm-packagetype).
 
 ## Disclaimer
 
-FirstSpirit is a trade mark by the [e-Spirit AG|https://www.e-spirit.com].
+FirstSpirit is a trade mark by the [e-Spirit AG](https://www.e-spirit.com).
