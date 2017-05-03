@@ -1,4 +1,4 @@
 title: Maven Package Type For FirstSpirit Modules
 description: >
   A simple approach to a Maven package type for FirstSpirit modules (FSM).
-theme: jekyll-theme-minimal
+theme: jekyll-theme-slate
