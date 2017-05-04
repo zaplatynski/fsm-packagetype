@@ -30,3 +30,4 @@ How to use the Maven package type for FSMs is documented in the GitHub repositor
 ## Disclaimer
 
 FirstSpirit is a trade mark by the [e-Spirit AG](https://www.e-spirit.com).
+sMaven is a trademark of the [Apache Software Foundation](https://www.apache.org).
