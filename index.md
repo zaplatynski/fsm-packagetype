@@ -17,6 +17,32 @@ supported (pom.xml):
     ...
     <packaging>fsm</packaging>
     ...
+    <build>
+        ...   
+        <plugins>
+            
+            <plugin>
+                <groupId>com.github.zaplatynski</groupId>
+                <artifactId>fsm-packagetype</artifactId>
+                <version>2.2.1</version>
+                <extensions>true</extensions>
+            </plugin>
+            
+             <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <attach>false</attach>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptors>
+                        <descriptor>src/assembly/fsm.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
+            ...
+        </plugins>    
+    </build>
+    ...
 </project>
 ```
 Second, there is support to use Maven's dependency resolution to create FSM's deployment 
