@@ -62,4 +62,4 @@ The FirstSpirit module package type is available at
 ## Disclaimer
 
 FirstSpirit is a trade mark by the [e-Spirit AG](https://www.e-spirit.com).
-sMaven is a trademark of the [Apache Software Foundation](https://www.apache.org).
+Maven is a trademark of the [Apache Software Foundation](https://www.apache.org).
