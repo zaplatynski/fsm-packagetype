@@ -78,7 +78,7 @@ this property to your pom.xml:
     ...
 </project>
 ```
-The default Velocity macros will recognized it and create the the following xml inside resource 
+The default Velocity macros will recognized it and create the the following attribute inside resource 
 tags:
 ```xml
 <module>
@@ -109,7 +109,7 @@ To create an module fragment xml in any other jar Maven module just this to the 
             <plugin>
                 <groupId>com.github.zaplatynski</groupId>
                 <artifactId>fsm-packagetype</artifactId>
-                <version>2.1.2</version>
+                <version>2.2.1</version>
                 <executions>
                     <execution>
                         <goals>
