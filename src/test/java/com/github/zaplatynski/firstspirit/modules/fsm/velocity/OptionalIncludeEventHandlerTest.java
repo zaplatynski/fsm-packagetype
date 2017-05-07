@@ -44,6 +44,16 @@ public class OptionalIncludeEventHandlerTest {
   }
 
   @Test
+  public void includeEventSuccessWithSlash() throws Exception {
+    when(runtimeServices.getLoaderNameForResource(anyString())).thenReturn("non null Value");
+
+    final String event = testling.includeEvent("/myMod/target/module.xml",
+        "src/main/fsm/module.vm", null);
+
+    assertThat(event, is("/myMod/target/module.xml"));
+  }
+
+  @Test
   public void includeEventFailed() throws Exception {
     when(runtimeServices.getLoaderNameForResource(anyString())).thenReturn(null);
 

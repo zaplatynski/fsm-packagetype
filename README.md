@@ -27,7 +27,7 @@ In your `pom.xml` add this:
             <plugin>
                 <groupId>com.github.zaplatynski</groupId>
                 <artifactId>fsm-packagetype</artifactId>
-                <version>2.2.1</version>
+                <version>2.3.0</version>
                 <!-- this is important when extending core Maven functionality: -->
                 <extensions>true</extensions>
             </plugin>
@@ -109,7 +109,7 @@ To create an module fragment xml in any other jar Maven module just this to the 
             <plugin>
                 <groupId>com.github.zaplatynski</groupId>
                 <artifactId>fsm-packagetype</artifactId>
-                <version>2.2.1</version>
+                <version>2.3.0</version>
                 <executions>
                     <execution>
                         <goals>

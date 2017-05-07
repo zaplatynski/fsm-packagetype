@@ -24,17 +24,19 @@ public class ModuleXmlParser {
 
   /**
    * Instantiates a new Module xml parser.
-   *  @param source  the source
+   *
+   * @param source  the source
    * @param target  the target
    * @param project the project
    */
   public ModuleXmlParser(final String source, final File target, final MavenProject project) {
-    this(source,target,project, new VelocityManager(project));
+    this(source, target, project, new VelocityManager(project));
   }
 
   /**
    * Instantiates a new Module xml parser. Used in tests.
-   *  @param source   the source
+   *
+   * @param source   the source
    * @param target   the target
    * @param project  the project
    * @param velocity the velocity
@@ -67,8 +69,8 @@ public class ModuleXmlParser {
       }
 
     } else {
-      throw new MojoExecutionException(moduleVm,"Velocity macro " + moduleVm.getName() + " is "
-          + "missing","The velocity macro does not exist at '"
+      throw new MojoExecutionException(moduleVm, "Velocity macro " + moduleVm.getName() + " is "
+          + "missing", "The velocity macro does not exist at '"
           + moduleVm.getAbsolutePath() + "'. Skip execution!");
     }
   }

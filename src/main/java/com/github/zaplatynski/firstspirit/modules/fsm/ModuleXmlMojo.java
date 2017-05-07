@@ -44,11 +44,6 @@ public class ModuleXmlMojo extends AbstractMojo {
   @Override
   public void execute() throws MojoExecutionException, MojoFailureException {
 
-    if (project == null) {
-      throw new MojoFailureException(this, "The Maven project is null", "");
-
-    }
-
     if (source == null) {
       throw new MojoFailureException(this, "The source is null", "");
     }

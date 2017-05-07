@@ -27,6 +27,15 @@ public class ModuleXmlMojoTest {
   @InjectInto(targetComponentId = "testling", fieldName = "project")
   private MavenProject project;
 
+  @Mock
+  @InjectInto(targetComponentId = "testlingMissingParameterTarget", fieldName = "project")
+  private MavenProject project2;
+
+  @Mock
+  @InjectInto(targetComponentId = "testlingMissingParameterSource", fieldName = "project")
+  private MavenProject project3;
+
+
   @InjectInto(targetComponentId = "testling", fieldName = "source")
   private String source = "/module.vm";
 
@@ -48,6 +57,7 @@ public class ModuleXmlMojoTest {
   @ObjectUnderTest(id = "testlingMissingParameterTarget")
   private ModuleXmlMojo testlingMissingParameterTarget = new ModuleXmlMojo();
 
+  @ObjectUnderTest(id = "testlingMissingParameterSource")
   private ModuleXmlMojo testlingMissingParameterSource = new ModuleXmlMojo();
 
   @Before

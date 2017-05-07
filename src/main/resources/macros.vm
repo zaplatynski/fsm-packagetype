@@ -26,12 +26,17 @@
 #set($depName = "${currentArtifact.groupId}:${currentArtifact.artifactId}")
 #set($depVersion = "${currentArtifact.version}")
 #set($depFile = "${libPath}/${currentArtifact.file.name}")
+#if($serverScopes && $serverScopes.contains($depName))
+#set($depScope="server")
+#else
+#set($depScope="$scope")
+#end
 #if($fsmode)
 #set($depMode='mode="isolated"')
 #else
 #set($depMode="")
 #end
-<resource #if($fsmode && $fsmode != "")mode="${fsmode}" #end#if($scope != "")scope="${scope}"#end name="${depName}" version="${depVersion}">${depFile}</resource>
+<resource #if($fsmode && $fsmode != "")mode="${fsmode}" #end#if($depScope != "")scope="${depScope}"#end name="${depName}" version="${depVersion}">${depFile}</resource>
 #set($depName = "")
 #set($depVersion = "")
 #set($depFile = "")

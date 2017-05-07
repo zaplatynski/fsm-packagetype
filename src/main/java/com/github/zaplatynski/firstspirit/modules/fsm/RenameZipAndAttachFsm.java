@@ -52,12 +52,7 @@ public class RenameZipAndAttachFsm {
       }
     }
 
-    final boolean success;
-    try {
-      success = source.renameTo(target);
-    } catch (final Exception error) {
-      throw new MojoExecutionException("Renaming to *.fsm failed!", error);
-    }
+    final boolean success = source.renameTo(target);
 
     if (success) {
       project.getArtifact().setFile(target);

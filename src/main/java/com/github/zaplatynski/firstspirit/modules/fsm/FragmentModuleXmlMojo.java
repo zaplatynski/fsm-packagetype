@@ -13,6 +13,8 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type FragmentModuleXmlMojo is used to parse a Velocity macro file. The module.vm creates a
@@ -26,7 +28,10 @@ public class FragmentModuleXmlMojo extends AbstractMojo {
   private String source;
 
   @Parameter(defaultValue = "${project.build.directory}/module-fragment.xml", required = true)
-  protected File target;
+  private File target;
+
+  @Parameter(required = false)
+  private List<String> serverScopes = new ArrayList<>();
 
   @Component
   private MavenProject project;
@@ -42,6 +47,8 @@ public class FragmentModuleXmlMojo extends AbstractMojo {
       throw new MojoFailureException(this, "The target is null!", "The target path for the "
           + "module-fragment.xml is null. Please provide a target path.");
     }
+
+    project.getProperties().put("serverScopes", serverScopes);
 
     ModuleXmlParser parser = new ModuleXmlParser(source, target, project);
     parser.parseModuleVm();

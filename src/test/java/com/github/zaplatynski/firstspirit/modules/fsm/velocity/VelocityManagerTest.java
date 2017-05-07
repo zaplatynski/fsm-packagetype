@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.RandomAccessFile;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Properties;
@@ -54,6 +55,7 @@ public class VelocityManagerTest {
 
     mavenProjectProperties = new Properties();
     mavenProjectProperties.setProperty("customVariable","This is a custom value.");
+    mavenProjectProperties.put("serverScopes", Arrays.asList("groupId2:artifactId2"));
     when(project.getProperties()).thenReturn(mavenProjectProperties);
 
     templateRoot = temporary.getRoot();
@@ -225,10 +227,10 @@ public class VelocityManagerTest {
 
   @Test
   public void renderModuleXmlWithMavenDependencies() throws Exception {
-    final DefaultArtifact artifactCompileScope = new DefaultArtifact("groupId1", "artifdactId1",
+    final DefaultArtifact artifactCompileScope = new DefaultArtifact("groupId1", "artifactId1",
         "1.0", "compile", "jar", null,        artifactResolver);
     artifactCompileScope.setFile(new File("artifact1-1.0.jar"));
-    final DefaultArtifact artifactRunetimeScope = new DefaultArtifact("groupId2", "artifdactId2",
+    final DefaultArtifact artifactRunetimeScope = new DefaultArtifact("groupId2", "artifactId2",
         "2.0", "runtime", "jar", null,        artifactResolver);
     artifactRunetimeScope.setFile(new File("artifact2-2.0.jar"));
 
@@ -259,10 +261,10 @@ public class VelocityManagerTest {
             "    <version>1.0</version>\n" +
             "\n" +
             " <resources>\n" +
-            "    <resource scope=\"module\" name=\"groupId1:artifdactId1\" version=\"1.0\">" +
-            "lib/artifact1-1.0.jar</resource>\n" +
-            "    <resource scope=\"module\" name=\"groupId2:artifdactId2\" version=\"2.0\">" +
+            "    <resource scope=\"server\" name=\"groupId2:artifactId2\" version=\"2.0\">" +
             "lib/artifact2-2.0.jar</resource>\n" +
+            "    <resource scope=\"module\" name=\"groupId1:artifactId1\" version=\"1.0\">" +
+            "lib/artifact1-1.0.jar</resource>\n" +
             " </resources>\n" +
             "\n" +
             "</module>"));

@@ -51,9 +51,9 @@ public class VelocityManager {
     context.put("project", project);
 
     // add all Maven properties to context
-    for (String property : project.getProperties().stringPropertyNames()) {
-      System.out.println(property);
-      context.put(property, project.getProperties().getProperty(property));
+    final Properties projectProperties = project.getProperties();
+    for (Object key : projectProperties.keySet()) {
+      context.put(key.toString(), projectProperties.get(key));
     }
 
     return context;
