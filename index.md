@@ -24,7 +24,7 @@ supported (pom.xml):
             <plugin>
                 <groupId>com.github.zaplatynski</groupId>
                 <artifactId>fsm-packagetype</artifactId>
-                <version>2.2.1</version>
+                <version>2.3.0</version>
                 <extensions>true</extensions>
             </plugin>
             
