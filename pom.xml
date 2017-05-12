@@ -277,25 +277,6 @@
 
         <plugins>
 
-
-            <plugin>
-                <groupId>randoop</groupId>
-                <artifactId>randoop-maven-plugin</artifactId>
-                <version>3.1.5</version>
-                <configuration>
-                    <packageName>com.github.zaplatynski.firstspirit.modules.fsm</packageName>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>generate-tests</id>
-                        <goals>
-                            <goal>gentests</goal>
-                        </goals>
-                        <phase>generate-test-sources</phase>
-                    </execution>
-                </executions>
-            </plugin>
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
