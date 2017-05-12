@@ -53,6 +53,10 @@ descriptor called _module.xml_ to list all the transitive libraries which are us
 How to use the Maven package type for FSMs is documented in the GitHub repository at 
 [github.com/zaplatynski/fsm-packagetype](https://github.com/zaplatynski/fsm-packagetype).
 
+## Help, bugs and feature requests
+
+Please file any **request for help**, **bug** or **feature request** at [github.com/zaplatynski/fsm-packagetype/issues](https://github.com/zaplatynski/fsm-packagetype/issues).
+
 ## Download
 
 The FirstSpirit module package type is available at
