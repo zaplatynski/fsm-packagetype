@@ -167,6 +167,10 @@ If you want to have a kind of real world example then have a look at my [Second-
 mvn clean install
 ```
 
+## Help, bugs and feature requests
+
+Please file any **request for help**, **bug** or **feature request** at [github.com/zaplatynski/fsm-packagetype/issues](https://github.com/zaplatynski/fsm-packagetype/issues).
+
 ##  Disclaimer
 
 By using it you agree to the license stated in the file [LICENSE](LICENSE). FirstSpirit is a trade mark by the [e-Spirit AG](http://www.e-spirit.com/).
