@@ -33,9 +33,9 @@ In your `pom.xml` add this:
             </plugin>
             
             <!-- define how the FSM file look like -->
-             <plugin>
+            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.6</version>
+                <version>3.0.0</version>
                 <configuration>
                     <attach>false</attach>
                     <appendAssemblyId>false</appendAssemblyId>
@@ -43,6 +43,15 @@ In your `pom.xml` add this:
                         <descriptor>src/assembly/fsm.xml</descriptor>
                     </descriptors>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             
         </plugins>    
@@ -132,7 +141,7 @@ define e.g. an FirstSpirit Executable or Service.
 Inside the above mentioned `fsm.xml` you need to specify the [Maven assembly plugin](http://maven.apache.org/plugins/maven-assembly-plugin/) descriptor to create a typical FSM file layout:
 ```xml
 <assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
     <id>fsm</id>
     <formats>
         <format>zip</format>
@@ -144,14 +153,17 @@ Inside the above mentioned `fsm.xml` you need to specify the [Maven assembly plu
             <outputDirectory>META-INF</outputDirectory>
             <filtered>false</filtered>
         </file>
+        <file>
+            <source>target/${project.artifactId}-${project.version}.jar</source>
+            <outputDirectory>lib</outputDirectory>
+            <filtered>false</filtered>
+        </file>
     </files>
     <dependencySets>
         <dependencySet>
             <outputDirectory>lib</outputDirectory>
-            <includes>
-                <include>${project.groupId}:${project.artifactId}</include>
-            </includes>
             <useTransitiveFiltering>true</useTransitiveFiltering>
+            <useProjectArtifact>false</useProjectArtifact>
         </dependencySet>
     </dependencySets>
 </assembly>
