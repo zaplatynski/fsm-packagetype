@@ -86,7 +86,7 @@ public class VelocityManager {
 
   private static String getTemplateRoot(final MavenProject project) {
     if (project.getParent() != null && isNotFlatProject(project)) {
-        return project.getParent().getBasedir().getAbsolutePath();
+      return project.getParent().getBasedir().getAbsolutePath();
     }
     return project.getBasedir().getParentFile().getAbsolutePath();
   }
