@@ -61,6 +61,7 @@ public class VelocityManagerTest {
     templateRoot = temporary.getRoot();
     assertThat(templateRoot.exists(), is(true));
     when(parentProject.getBasedir()).thenReturn(templateRoot);
+    when(project.getBasedir()).thenReturn(templateRoot);
     when(project.getParent()).thenReturn(parentProject);
 
     final File parent = new File(templateRoot, "project/src/main/fsm/");
@@ -279,6 +280,7 @@ public class VelocityManagerTest {
     when(project.getProperties()).thenReturn(mavenProjectProperties);
 
     when(parentProject.getBasedir()).thenReturn(templateRoot);
+    when(project.getBasedir()).thenReturn(templateRoot);
     when(project.getParent()).thenReturn(parentProject);
 
     testling = new VelocityManager(project);

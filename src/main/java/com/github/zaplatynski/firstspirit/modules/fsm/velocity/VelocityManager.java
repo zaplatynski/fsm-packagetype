@@ -8,6 +8,7 @@ import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 import java.io.Writer;
+import java.nio.file.Path;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -84,9 +85,15 @@ public class VelocityManager {
   }
 
   private static String getTemplateRoot(final MavenProject project) {
-    if (project.getParent() != null) {
+    if (project.getParent() != null && isNotFlatProject(project)) {
       return project.getParent().getBasedir().getAbsolutePath();
     }
     return project.getBasedir().getParentFile().getAbsolutePath();
+  }
+
+  private static boolean isNotFlatProject(MavenProject project) {
+    Path basedir = project.getBasedir().toPath();
+    Path parentDir = project.getParent().getBasedir().toPath();
+    return basedir.startsWith(parentDir);
   }
 }
